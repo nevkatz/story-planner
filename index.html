@@ -3,15 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <title>Story Length Estimator</title>
-  <style>
-    body { font-family: sans-serif; max-width: 400px; margin: 40px auto; }
-    label { display:block; margin-top: 15px; }
-    .output { margin-top: 20px; font-size: 1.2em; font-weight: bold; }
-  </style>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
 <h2>Story Length Estimator</h2>
+
+<p class="intro">
+  This tool estimates story length using the <a href="https://writersatelier.com/how-to-use-the-mice-quotient-to-determine-the-length-of-your-project/">MICE quotient</a>, a simple formula based on the number 
+  of characters, scenes, and MICE threads in your narrative. <em>(MICE stands for Milieu, Inquiry, Character, Event.)</em>
+</p>
 
 <label>
   Characters (C):
@@ -36,6 +37,11 @@
 
 <div class="output" id="output">Estimated length: —</div>
 
+<div class="equation-box">
+L = ((C + S) × K × M) / 1.5
+</div>
+<footer>Widget created by Nevin Katz. Formula courtesy of Mary Robinette Kowal.</footer>
+
 <script>
 function update() {
   const C = Number(document.getElementById('chars').value);
@@ -59,4 +65,3 @@ update();
 
 </body>
 </html>
-
