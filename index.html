@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Story Length Estimator</title>
+  <style>
+    body { font-family: sans-serif; max-width: 400px; margin: 40px auto; }
+    label { display:block; margin-top: 15px; }
+    .output { margin-top: 20px; font-size: 1.2em; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+<h2>Story Length Estimator</h2>
+
+<label>
+  Characters (C):
+  <input type="number" id="chars" value="2" min="0">
+</label>
+
+<label>
+  Scenes (S):
+  <input type="number" id="scenes" value="3" min="0">
+</label>
+
+<label>
+  MICE Threads (M):
+  <input type="number" id="mice" value="1" min="1">
+</label>
+
+<label>
+  Words per Unit (constant):
+  <input type="range" id="constant" min="100" max="1500" value="750" step="50">
+  <span id="constValue">750</span> words
+</label>
+
+<div class="output" id="output">Estimated length: —</div>
+
+<script>
+function update() {
+  const C = Number(document.getElementById('chars').value);
+  const S = Number(document.getElementById('scenes').value);
+  const M = Number(document.getElementById('mice').value);
+  const K = Number(document.getElementById('constant').value);
+
+  document.getElementById('constValue').textContent = K;
+
+  const L = ((C + S) * K * M) / 1.5;
+  document.getElementById('output').textContent =
+    `Estimated length: ${Math.round(L)} words`;
+}
+
+document.querySelectorAll("input").forEach(el => {
+  el.addEventListener("input", update);
+});
+
+update();
+</script>
+
+</body>
+</html>
+
